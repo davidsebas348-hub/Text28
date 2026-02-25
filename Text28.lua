@@ -72,7 +72,7 @@ end
 local title = Instance.new("TextLabel", mainFrame)
 title.Size = UDim2.new(1,0,0,50)
 title.BackgroundColor3 = Color3.fromRGB(0,0,0)
-title.Text = "SBS HUB | Scary Shawarma"
+title.Text = "SBS HUB | MURDER MISTERY 2"
 title.TextColor3 = Color3.fromRGB(255,255,255)
 title.Font = Enum.Font.GothamBold
 title.TextScaled = true
@@ -160,7 +160,7 @@ end
 -- SCROLL POR SUBMENU
 -- ======================
 local scrollConfig = {
-    ["MAIN"] = false,
+    ["MAIN"] = true,
     ["ESP"] = true,
     ["INOCENT"] = false,
     ["MURDERER"] = true,
@@ -179,7 +179,7 @@ local scrollConfig = {
 -- ======================
 -- MENUS
 -- ======================
-local menuOrder = {"MAIN","ESP","INOCENT","MURDERER","SHERIFF","COINS","TRAPS","TELEPORT","FAKEBOMB","PACK ANIMATION","EMOTES","FLING","ANTIS","Fps","YOUTUBE"}
+local menuOrder = {"MAIN","ESP","INOCENT","MURDERER","SHERIFF","COINS","TRAPS","TELEPORT","FAKEBOMB","PACK ANIMATION","EMOTES","FLING","Fps","YOUTUBE"}
 local menuData = {
     ["MAIN"] = {
         "LOCALPLAYER",
@@ -397,11 +397,7 @@ for i,menu in ipairs(menuOrder) do
                 elseif opt == "SECOND LIFE" then
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text26/refs/heads/main/Text26.lua"))()
                 elseif opt == "X-RAY" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text147/refs/heads/main/Text147.lua"))()
-                elseif opt == "SEMI-INVISIBLE" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text335/refs/heads/main/Text335.lua"))()
-                elseif opt == "SEMI-INVISIBLE" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text335/refs/heads/main/Text335.lua"))()            
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text147/refs/heads/main/Text147.lua"))()          
                 end
             end)
             oy += 40
