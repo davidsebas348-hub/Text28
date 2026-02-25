@@ -187,7 +187,7 @@ local menuData = {
         "INVISIBLE",
         "FULL BRIGHT",
         "SERVER BROWSER",
-        "ROUND TIMER"
+        "ROUND TIMER",
         "SECOND LIFE",
         "X-RAY",
         
