@@ -13,7 +13,7 @@ local buttonStates = {}
 local noToggleButtons = {
     ["YOUTUBE:SBS HUB"] = true,
     ["SUSCRIBETE:)"] = true,
-    ["SERVER BROWSER"] = true,
+    ["Gaze Emote"] = true,
     ["LOCALPLAYER"] = true,
     ["INVISIBLE"] = true,
     ["DESYNC"] = true,
@@ -27,6 +27,7 @@ local noToggleButtons = {
     ["TP AEL MURDERER"] = true,
     ["TP AEL SHERIFF"] = true,
     ["AUTO COLLECT COINS"] = true,
+    ["SHOOT MURDERER"] = true,
 }
 local screenGui = Instance.new("ScreenGui", PlayerGui)
 screenGui.Name = "SBS_HUB"
@@ -186,7 +187,6 @@ local menuData = {
         "DESYNC",
         "INVISIBLE",
         "FULL BRIGHT",
-        "SERVER BROWSER",
         "ROUND TIMER",
         "SECOND LIFE",
         "X-RAY",
@@ -221,12 +221,12 @@ local menuData = {
         "TP A PLAYERS (GUI)"
     },
     ["SHERIFF"] = {
-        "SHOOT MURDER",
+        "SHOOT MURDERER",
         "SHOOT MURDERER (BUTTON)",
         "AUTO SHOOT MURDERER"
     },
     ["EMOTES"] = {
-        "EMOTE GUI (Coming soon)",
+        "Gaze Emote",
         "FAKE DIE (GUI)",
         "SEMI-INVISIBLE"
     },
@@ -397,6 +397,12 @@ for i,menu in ipairs(menuOrder) do
                 elseif opt == "SECOND LIFE" then
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text26/refs/heads/main/Text26.lua"))()
                 elseif opt == "X-RAY" then
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text147/refs/heads/main/Text147.lua"))()    
+                elseif opt == "FLING SHERIFF" then
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text335/refs/heads/main/Text335.lua"))()
+                elseif opt == "FLING MURDERER" then
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text26/refs/heads/main/Text26.lua"))()
+                elseif opt == "FE FLING GUI" then
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text147/refs/heads/main/Text147.lua"))()          
                 end
             end)
