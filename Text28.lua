@@ -32,6 +32,7 @@ local noToggleButtons = {
     ["Fling Sheriff"] = true,
     ["Fling Murderer"] = true,
     ["Gaze Emote"] = true,
+    ["Kill Gui"] = true,
 }
 local screenGui = Instance.new("ScreenGui", PlayerGui)
 screenGui.Name = "SBS_HUB"
