@@ -28,6 +28,10 @@ local noToggleButtons = {
     ["TP AEL SHERIFF"] = true,
     ["AUTO COLLECT COINS"] = true,
     ["SHOOT MURDERER"] = true,
+    ["FE FLING GUI"] = true,
+    ["Fling Sheriff"] = true,
+    ["Fling Murderer"] = true,
+    ["Gaze Emote"] = true,
 }
 local screenGui = Instance.new("ScreenGui", PlayerGui)
 screenGui.Name = "SBS_HUB"
@@ -256,7 +260,7 @@ local menuData = {
         "Fuerza de el Touch Fling",
         "Anti Fling",
         "FE FLING GUI",
-        "Fling sheriff",
+        "Fling Sheriff",
         "Fling Murderer"
     },
     ["Fps"] = {
@@ -398,12 +402,14 @@ for i,menu in ipairs(menuOrder) do
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text26/refs/heads/main/Text26.lua"))()
                 elseif opt == "X-RAY" then
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text147/refs/heads/main/Text147.lua"))()    
-                elseif opt == "FLING SHERIFF" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text335/refs/heads/main/Text335.lua"))()
-                elseif opt == "FLING MURDERER" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text26/refs/heads/main/Text26.lua"))()
+                elseif opt == "Fling Sheriff" then
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text361/refs/heads/main/Text361.lua"))()
+                elseif opt == "Fling Murderer" then
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text360/refs/heads/main/Text360.lua"))()
                 elseif opt == "FE FLING GUI" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text147/refs/heads/main/Text147.lua"))()          
+                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Fling-Fe/refs/heads/main/FlingFeGui"))()     
+                elseif opt == "Gaze Emote" then
+                    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Gaze-emote-74592"))()          
                 end
             end)
             oy += 40
