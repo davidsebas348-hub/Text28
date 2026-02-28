@@ -350,7 +350,7 @@ for i,menu in ipairs(menuOrder) do
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text280/refs/heads/main/Text280.lua"))()
                 elseif opt == "Touch Fling" then
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text281/refs/heads/main/Text281.lua"))()
-                elseif opt == "Fuerza de el Fling" then
+                elseif opt == "Fuerza de el Touch Fling" then
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text282/refs/heads/main/Text282.lua"))()
                 elseif opt == "Fps Boost" then
                     loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Fps-Boost-/refs/heads/main/FPS_BOOST_UNIVERSAL.lua"))()
