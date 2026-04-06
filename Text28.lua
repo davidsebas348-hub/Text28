@@ -745,6 +745,7 @@ local menuData = {
     ["ESP"] = {
         "ESP PLAYERS",
         "ESP GUN",
+        "NO ESP TO ME",
         "ESP NAME",
         "ESP DISTANCE",
         "ESP TRACERS",
@@ -845,10 +846,10 @@ if topTitle then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Reset-speed-jumpPower-y-gravedad-/refs/heads/main/Reset.lua"))()
 
         elseif opt == "ESP PLAYERS" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text416/refs/heads/main/Text416.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text154/refs/heads/main/Text154.lua"))()
             
-        elseif opt == "ESP PLAYERS (NO LAG)" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text417/refs/heads/main/Text417.lua"))()
+        elseif opt == "NO ESP TO ME" then
+            loadstring(game:HttpGet("getgenv().HIGHLIGHT_ME = not getgenv().HIGHLIGHT_ME"))()
 
         elseif opt == "ESP NAME" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text418/refs/heads/main/Text418.lua"))()
