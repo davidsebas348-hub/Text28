@@ -1,3 +1,5 @@
+loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text155/refs/heads/main/Text155.lua"))() -- Detectar Rol (importante)
+                            
 -- ======================
 -- SBS HUB COMPLETO FINAL  (Pistol Arena
 -- ======================
