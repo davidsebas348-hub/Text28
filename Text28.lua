@@ -174,8 +174,8 @@ local noToggleButtons = {
     ["Fps Boost"] = true,
     ["LOBBY"] = true,
     ["MAP"] = true,
-    ["BULLET SIZE"] = true,
-    [""] = true,
+    ["FLING PLAYER"] = true,
+    ["GRAB GUN"] = true,
     [""] = true,
     [""] = true,
     [""] = true,  
@@ -234,8 +234,8 @@ local textboxButtons = {
     variable = "HITBOX_TRANSPARENCY",
     url = nil
     },
-    ["NAME OF THE ITEM"] = {
-    variable = "FIND_TOOL",
+    ["PLAYER NAME"] = {
+    variable = "TargetPlayerName",
     url = nil
     },
     ["FOV SIZE"] = {
@@ -708,6 +708,7 @@ local scrollConfig = {
     ["SHERIFF"] = true,
     ["MURDERER"] = true,
     ["TELEPORT"] = true,
+    ["FLING"] = true,
     ["AUTO FARM"] = true,
     ["Fps"] = false,
     ["YOUTUBE"] = false
@@ -715,7 +716,7 @@ local scrollConfig = {
 -- ======================
 -- MENUS
 -- ======================
-local menuOrder = {"MAIN","ESP","INOCENT","SHERIFF","MURDERER","TELEPORT","AUTO FARM","Fps","YOUTUBE"}
+local menuOrder = {"MAIN","ESP","INOCENT","SHERIFF","MURDERER","TELEPORT","FLING","AUTO FARM","Fps","YOUTUBE"}
 local menuData = {
     ["MAIN"] = {
     "DESYNC",
@@ -737,6 +738,12 @@ local menuData = {
     ["INOCENT"] = {
         "GRAB GUN",
         "AUTO GRAB GUN",
+    },
+    ["FLING"] = {
+        "TOUCH FLING",
+        "POWER",
+        "PLAYER NAME",
+        "FLING PLAYER",
     },
     ["ESP"] = {
         "ESP PLAYERS",
@@ -887,8 +894,8 @@ if topTitle then
         elseif opt == "AUTO GRAB GUN" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text153/refs/heads/main/Text153.lua"))()
                             
-        elseif opt == "INSTANT RELOAD" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text432/refs/heads/main/Text432.lua"))()
+        elseif opt == "FLING PLAYER" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text156/refs/heads/main/Text156.lua"))()
 
         elseif opt == "AIMBOT LIGERO" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text422/refs/heads/main/Text422.lua"))()
