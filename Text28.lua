@@ -1,40 +1,258 @@
 -- ======================
--- SBS HUB COMPLETO FINAL (FIX TOTAL)
+-- SBS HUB COMPLETO FINAL  (Pistol Arena)
 -- ======================
 repeat task.wait() until game:IsLoaded()
 
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = game:GetService("CoreGui")
+screenGui.DisplayOrder = 999999
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 local Players = game:GetService("Players")
 local UserInputService = game:GetService("UserInputService")
 local LocalPlayer = Players.LocalPlayer
 local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
 
-local buttonStates = {}
+-- poner nombre de textobox que queremos que solo se ponga números
+local numericBoxes = {
+    ["SPEED"] = true,
+    ["JUMPPOWER"] = true,
+    ["GRAVITY"] = true,
+    ["RANGE"] = true,
+    ["SIZE"] = true,
+    ["FLY SPEED"] = true,
+    ["TRASPARENCY 0-1"] = true,
+    ["FOV SIZE"] = true,
+    ["BULLET SIZE"] = true,
+}
+
+-- poner título arriba de tal botón 
+local topTitles = {
+    ["SPEED"] = "MOVEMENT SETTINGS",
+    ["TRASPARENCY 0-"] = "OP",
+}
+
+-- poner títulos abajo de tal botón
+local customTitles = {
+    ["SPED"] = "MOVEMENT SETTINGS",
+    ["TRASPARENCY 0-1"] = "OP",
+    ["ESP NAE"] = "ESP VISUAL",
+}
+
+-- cambiar el nombre de los Titulos de las secciones 
+local menuNames = {
+    ["MAI"] = "PLAYER MENU",
+    ["COMBAT"] = "FIGHT SYSTEM",
+    ["ESP"] = "VISUALS",
+    ["TELEPORT"] = "TELEPORTS",
+}
+
+-- ======================
+-- 🔥 MULTI BUTTON CONFIG
+-- ======================
+
+local multiButtons = {
+    [""] = { 
+        variable = "",
+        options = {
+            {name = "BLACK", color = Color3.fromRGB(0, 0, 0)},
+        }
+    },
+
+    -- puedes meter 30+ aquí sin problema
+}
+
+-- ======================
+-- CONFIG GLOBAL BOTONES (FALTABA ESTO)
+-- ======================
+
+local BUTTON_SIZE = UDim2.new(1, -20, 0, 30)
+
+local BUTTON_OFFSET_X = 10
+local BUTTON_GLOBAL_X = 0
+local BUTTON_GLOBAL_Y = 0
+
+-- ======================
+-- CONFIG PERSONAL POR BOTÓN
+-- ======================
+
+local BUTTON_CUSTOM = {
+    ["RANGE"] = {
+        size = UDim2.new(1, -50, 0, 27),
+        x = 20,
+        y = -6
+    },
+
+    ["SIZ"] = {
+        size = UDim2.new(1, -50, 0, 27),
+        x = 20,
+        y = -6
+    },
+
+    ["BULLET TRACERS"] = {
+        size = UDim2.new(1, -50, 0, 27),
+        x = 20,
+        y = -6
+    },
+
+    ["COLOR OF THE ESP"] = {
+        size = UDim2.new(1, -50, 0, 27),
+        x = 20,
+        y = -6
+    },
+    
+    ["BULLET SIZE."] = {
+        size = UDim2.new(1, -50, 0, 27),
+        x = 20,
+        y = -6
+    },
+
+    ["TRASPARENCY 0-"] = {
+        size = UDim2.new(1, -50, 0, 27),
+        x = 20,
+        y = -9 
+    }
+}
+
+-- TITULOS ARRIBA DE BOTONES (titulos simples)
+local buttonTitles = {
+    ["SPED"] = "PLAYER",
+    ["AUTO DESTROY TO ALL OBJECTS"] = "TROLL",
+    ["JUMP(BUTTON)"] = "JUMP PAD",
+
+    ["TP TOOL"] = "CLICK TP",
+    ["MAP"] = "GAME",
+    ["PLAYER NAME"] = "PLAYERS",
+    
+
+    ["AIMBOT LIGERO"] = "AIM",
+    ["AUTO SHOOT PLAYERS"] = "TROLL",
+    
+    ["ESP TO ALL ALARMS"] = "END",
+    ["ESP TO ALL THE TOKEN"] = "ITEMS",
+    ["ESP ENEMIES"] = "ENEMIES",
+    ["ESP PLAYERS + NAME + DISTANCE"] = "PLAYERS",
+
+    ["AUTO EAT"] = "EAT",
+    ["SELF-HEALING"] = "HEALTH",
+    [""] = "ENEMIES",
+    [""] = "PLAYERS",
+
+    ["HITBOX EXTENDER"] = "HITBOX",
+    ["AUTO KILL ENEMIES"] = "KILL",
+    ["MULTIPLY DAMAGE"] = "DAMAGE MULTIPLIER",
+    ["INFINITY AMMO"] = "MODIFY GUNS",
+    ["INSTANT SWING"] = "MESH WEAPON MODIFICATIONS",
+
+    ["NAME OF THE ITEM"] = "BRING",
+    ["NAME OF THE ITEM."] = "GRAB",
+    
+    ["Fps Boost"] = "PERFORMANCE"
+}
+
+-- togle v2
+local redToggleButtons = {
+    ["X-AY"] = true,
+    ["BULLET TRACER"] = true,
+}
+
+getgenv().SBS_BUTTON_STATES = getgenv().SBS_BUTTON_STATES or {}
+local buttonStates = getgenv().SBS_BUTTON_STATES
 -- BOTONES QUE NO SERAN TOGLE
 local noToggleButtons = {
     ["YOUTUBE:SBS HUB"] = true,
     ["SUSCRIBETE:)"] = true,
-    ["Gaze Emote"] = true,
+    ["SILENT AIM"] = true,
     ["LOCALPLAYER"] = true,
-    ["INVISIBLE"] = true,
-    ["DESYNC"] = true,
-    ["HITBOX EXTENDER"] = true,
-    ["FULL BRIGHT"] = true,
-    ["GRAB GUN (TELEPORT)"] = true,
-    ["ELIGIR ANIMACIÓN (CÓDIGO)"] = true,
-    ["ELIGIR ANIMACIÓN"] = true,
-    ["TP A MAP"] = true,
-    ["TP A LOBBY"] = true,
-    ["TP AEL MURDERER"] = true,
-    ["TP AEL SHERIFF"] = true,
-    ["AUTO COLLECT COINS"] = true,
-    ["SHOOT MURDERER"] = true,
-    ["FE FLING GUI"] = true,
-    ["Fling Sheriff"] = true,
-    ["Fling Murderer"] = true,
-    ["Gaze Emote"] = true,
-    ["Kill Gui"] = true,
+    ["RESET STATS"] = true,
+    ["DESNC"] = true,
+    ["Fps Boost"] = true,
+    ["LOBBY"] = true,
+    ["MAP"] = true,
+    ["BULLET SIZE"] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,  
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    [""] = true,
+    ["BULLET TRACERS"] = true,
+    ["TP TO PLAYER"] = true,  
 }
-local screenGui = Instance.new("ScreenGui", PlayerGui)
+
+-- BOTONES SIN EFECTO VERDE
+local noGreenFlash = {
+    ["SUSCRIBETE:)"] = true
+}
+
+local textboxButtons = {
+    ["SPEED"] = {
+        variable = "SPEED",
+        url = "https://raw.githubusercontent.com/davidsebas348-hub/Speed/refs/heads/main/Speed.lua"
+    },
+
+    ["BULLET SPEED"] = {
+        variable = "BULLET_SPEED",
+        url = "https://raw.githubusercontent.com/davidsebas348-hub/Text397/refs/heads/main/Text397.lua"
+    },
+
+    ["BULLETSPERSHOT"] = {
+        variable = "BULLETS_PER_SHOT",
+        url = "https://raw.githubusercontent.com/davidsebas348-hub/Text398/refs/heads/main/Text398.lua"
+    },
+
+    ["JUMPPOWER"] = {
+        variable = "JUMP",
+        url = "https://raw.githubusercontent.com/davidsebas348-hub/JumpPower/refs/heads/main/JumpPower.lua"
+    },
+
+    ["GRAVITY"] = {
+        variable = "GRAVITY",
+        url = "https://raw.githubusercontent.com/davidsebas348-hub/Gravity/refs/heads/main/Gravity.lua"
+    },
+
+    ["FLY SPEED"] = {
+    variable = "FLY_SPEED",
+    url = nil
+    },
+    ["SIZE"] = {
+    variable = "HITBOX_SIZE",
+    url = nil
+    },
+    ["PLAYER NAME"] = {
+    variable = "PLAYER",
+    url = nil
+    },
+    ["TRASPARENCY 0-1"] = {
+    variable = "HITBOX_TRANSPARENCY",
+    url = nil
+    },
+    ["NAME OF THE ITEM"] = {
+    variable = "FIND_TOOL",
+    url = nil
+    },
+    ["FOV SIZE"] = {
+    variable = "AIMBOT_FOV",
+    url = nil
+    },
+    ["BULLET SIZE"] = {
+    variable = "BULLET_SIZE",
+    url = "https://raw.githubusercontent.com/davidsebas348-hub/Text433/refs/heads/main/Text433.lua"
+    },
+    ["XRAY-TRANSPARENCY"] = {
+    variable = "XRAY_TRANSPARENCY",
+    url = "https://raw.githubusercontent.com/davidsebas348-hub/Text433/refs/heads/main/Text433.lua"
+    },
+    ["RANGE"] = {
+    variable = "RANGE",
+    url = nil
+}
+}
+local old = PlayerGui:FindFirstChild("SBS_HUB")
+if old then
+    old:Destroy()
+end
 screenGui.Name = "SBS_HUB"
 screenGui.ResetOnSpawn = false
 local mainFrame = Instance.new("Frame", screenGui)
@@ -42,9 +260,54 @@ mainFrame.Size = UDim2.new(0,500,0,350)
 mainFrame.Position = UDim2.new(0.5,-250,0.5,-175)
 mainFrame.BackgroundColor3 = Color3.fromRGB(0,0,0)
 mainFrame.BorderSizePixel = 0
+mainFrame.ClipsDescendants = false
+
+-- ======================
+-- RESIZE CORNER
+-- ======================
+local resizeCorner = Instance.new("Frame", mainFrame)
+resizeCorner.Size = UDim2.new(0,20,0,20)
+resizeCorner.Position = UDim2.new(1,-20,1,-20)
+resizeCorner.BackgroundTransparency = 0.5
+resizeCorner.BackgroundColor3 = Color3.fromRGB(255,255,255)
+resizeCorner.BorderSizePixel = 0
+resizeCorner.ZIndex = 10
+
+-- ======================
+-- RESIZE LOGIC
+-- ======================
+do
+    local dragging, dragStart, startSize
+    local function updateSize(input)
+        local delta = input.Position - dragStart
+        local newWidth = math.max(100, startSize.X + delta.X) -- mínimo ancho 100
+        local newHeight = math.max(100, startSize.Y + delta.Y) -- mínimo alto 100
+        mainFrame.Size = UDim2.new(0, newWidth, 0, newHeight)
+    end
+    resizeCorner.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startSize = Vector2.new(mainFrame.AbsoluteSize.X, mainFrame.AbsoluteSize.Y)
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+    UserInputService.InputChanged:Connect(function(input)
+        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+            updateSize(input)
+        end
+    end)
+end
+
+
 local stroke = Instance.new("UIStroke", mainFrame)
 stroke.Color = Color3.fromRGB(255,255,255)
 stroke.Thickness = 2
+
 
 do
     local dragging, dragStart, startPos, dragInput
@@ -78,14 +341,21 @@ end
 local title = Instance.new("TextLabel", mainFrame)
 title.Size = UDim2.new(1,0,0,50)
 title.BackgroundColor3 = Color3.fromRGB(0,0,0)
-title.Text = "SBS HUB | MURDER MISTERY 2"
+title.Text = "SBS HUB | Pistol Arena"
 title.TextColor3 = Color3.fromRGB(255,255,255)
 title.Font = Enum.Font.GothamBold
 title.TextScaled = true
 local line = Instance.new("Frame", mainFrame)
 line.Size = UDim2.new(1,0,0,2)
 line.Position = UDim2.new(0,0,0,50)
-line.BackgroundColor3 = Color3.fromRGB(255,255,255)
+line.BackgroundColor3 = Color3.new(1,1,1)
+line.BackgroundTransparency = 0
+
+local rightFrame = Instance.new("ScrollingFrame", mainFrame)
+rightFrame.Size = UDim2.new(1,-150,1,-52)
+rightFrame.Position = UDim2.new(0,150,0,52)
+rightFrame.BackgroundColor3 = Color3.fromRGB(0,0,0)
+rightFrame.BorderSizePixel = 0
 
 local leftFrame = Instance.new("ScrollingFrame", mainFrame)
 leftFrame.Size = UDim2.new(0,150,1,-52)
@@ -94,15 +364,67 @@ leftFrame.BackgroundColor3 = Color3.fromRGB(0,0,0)
 leftFrame.BorderSizePixel = 0
 leftFrame.ScrollBarThickness = 6
 leftFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
-local rightFrame = Instance.new("ScrollingFrame", mainFrame)
-rightFrame.Size = UDim2.new(1,-150,1,-52)
-rightFrame.Position = UDim2.new(0,150,0,52)
-rightFrame.BackgroundColor3 = Color3.fromRGB(0,0,0)
-rightFrame.BorderSizePixel = 0
+
+-- ✅ AHORA SÍ (AQUÍ)
+local padding = Instance.new("UIPadding", rightFrame)
+padding.PaddingBottom = UDim.new(0,50)
+
+
+
 local midLine = Instance.new("Frame", mainFrame)
 midLine.Size = UDim2.new(0,2,1,-52)
 midLine.Position = UDim2.new(0,150,0,52)
 midLine.BackgroundColor3 = Color3.fromRGB(255,255,255)
+
+
+-- ======================
+-- 🔥 EMERGENCY DRAG LINE
+-- ======================
+
+local dragLine = Instance.new("Frame", mainFrame)
+dragLine.Size = UDim2.new(1, -60, 0, 8) -- ancho completo, altura pequeña
+dragLine.Position = UDim2.new(0, 30, 1, 10) -- el último número es para subir y bajar - es subir y sin - es bajar 
+dragLine.BackgroundColor3 = Color3.fromRGB(255,255,255)
+dragLine.BackgroundTransparency = 0.7 -- invisible
+dragLine.BorderSizePixel = 0
+dragLine.ZIndex = 20 -- encima de todo
+local corner = Instance.new("UICorner", dragLine)
+corner.CornerRadius = UDim.new(0, 6) -- puedes cambiar el 6
+
+-- DRAG LOGIC
+do
+    local dragging, dragStart, startPos
+
+    local function update(input)
+        local delta = input.Position - dragStart
+        mainFrame.Position = UDim2.new(
+            startPos.X.Scale, startPos.X.Offset + delta.X,
+            startPos.Y.Scale, startPos.Y.Offset + delta.Y
+        )
+    end
+
+    dragLine.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = mainFrame.Position
+
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+
+    game:GetService("UserInputService").InputChanged:Connect(function(input)
+        if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+            update(input)
+        end
+    end)
+end -- aca termina eso 🖕🖕🖕
+
+local currentMenuButton = nil
 
 local function createMenuButton(parent,text,y,callback)
     local b = Instance.new("TextButton", parent)
@@ -114,155 +436,314 @@ local function createMenuButton(parent,text,y,callback)
     b.Font = Enum.Font.GothamBold
     b.TextSize = 14
     b.BorderSizePixel = 0
-    
-    b.MouseButton1Click:Connect(callback)
+
+    b.MouseButton1Click:Connect(function()
+        -- restaurar el anterior
+        if currentMenuButton and currentMenuButton ~= b then
+            currentMenuButton.BackgroundColor3 = Color3.fromRGB(15,15,15)
+            currentMenuButton.TextColor3 = Color3.fromRGB(255,255,255)
+        end
+
+        -- marcar el actual
+        b.BackgroundColor3 = Color3.fromRGB(255,255,255)
+        b.TextColor3 = Color3.fromRGB(0,0,0)
+
+        currentMenuButton = b
+
+        callback()
+    end)
 end
 
 local function createButton(parent,text,y,callback)
-    local b = Instance.new("TextButton", parent)
-    b.Size = UDim2.new(1,-20,0,30)
-    b.Position = UDim2.new(0,10,0,y)
-    b.TextColor3 = Color3.fromRGB(255,255,255)
-    b.Font = Enum.Font.GothamBold
-    b.TextSize = 14
-    b.BorderSizePixel = 0
-    
-    local isToggle = not noToggleButtons[text]
-    
+    local hasTextbox = textboxButtons[text] ~= nil
+    local multiConfig = multiButtons[text]
+
+    local container = Instance.new("Frame", parent)
+    local custom = BUTTON_CUSTOM[text]
+
+    local finalSize = BUTTON_SIZE
+    local extraX = 0
+    local extraY = 0
+
+    if custom then
+        if custom.size then
+            finalSize = custom.size
+        end
+        extraX = custom.x or 0
+        extraY = custom.y or 0
+    end
+
+     local isDoubleLeft = doubleButtons[text] ~= nil
+local isDoubleRight = false
+
+for left, right in pairs(doubleButtons) do
+    if text == right then
+        isDoubleRight = true
+        break
+    end
+end
+
+if isDoubleLeft then
+    -- botón izquierdo
+    container.Size = UDim2.new(0.5, -15, 0, 30)
+    container.Position = UDim2.new(0, 10, 0, y)
+
+elseif isDoubleRight then
+    -- botón derecho
+    container.Size = UDim2.new(0.5, -15, 0, 30)
+    container.Position = UDim2.new(0.5, 5, 0, y)
+
+else
+    -- botón normal
+    container.Size = finalSize
+    container.Position = UDim2.new(
+        0, 10 + extraX,
+        0, y + extraY
+    )
+end
+    container.BackgroundTransparency = 1
+
+    local button = Instance.new("TextButton", container)
+    button.TextColor3 = Color3.fromRGB(255,255,255)
+    button.Font = Enum.Font.GothamBold
+    button.TextSize = 14
+    button.BorderSizePixel = 0
+
+    -- ======================
+    -- 🔥 MULTI MODE
+    -- ======================
+    if multiConfig then
+        button.Size = UDim2.new(1,0,1,0)
+        button.Text = ""
+        button.BackgroundColor3 = Color3.fromRGB(20,20,20)
+
+        getgenv().SBS_MULTI = getgenv().SBS_MULTI or {}
+        local index = getgenv().SBS_MULTI[text] or 0
+        local options = multiConfig.options
+
+        local label = Instance.new("TextLabel", button)
+        label.Size = UDim2.new(1,0,1,0)
+        label.BackgroundTransparency = 1
+        label.TextSize = 14
+        label.Font = Enum.Font.GothamBold
+
+        local function update()
+            if index == 0 then
+                label.Text = text
+                label.TextColor3 = Color3.fromRGB(255,255,255)
+            else
+                local opt = options[index]
+                label.Text = opt.name
+                label.TextColor3 = opt.color
+                if multiConfig.variable then
+                    getgenv()[multiConfig.variable] = opt.name
+                end
+            end
+        end
+
+        update()
+
+        button.MouseButton1Click:Connect(function()
+            index += 1
+            if index > #options then index = 1 end
+            getgenv().SBS_MULTI[text] = index
+            update()
+        end)
+
+        return
+    end
+
+-- ======================
+-- TEXTBOX MODE (CORTO Y FIXED)
+-- ======================
+if hasTextbox then
+    button:Destroy()
+
+    local box = Instance.new("TextBox", container)
+    box.Size = UDim2.new(1,0,1,0)
+    box.BackgroundColor3 = Color3.fromRGB(25,25,25)
+    box.TextColor3 = Color3.fromRGB(255,255,255)
+    box.PlaceholderText = text
+    box.Text = ""
+    box.Font = Enum.Font.GothamBold
+    box.TextSize = 14
+    box.BorderSizePixel = 0
+
+    local data = textboxButtons[text]
+
+    -- 🔥 cargar valor guardado
+    if data and getgenv()[data.variable] ~= nil then
+        box.Text = tostring(getgenv()[data.variable])
+    end
+
+    -- 🔢 SOLO NÚMEROS (EN TIEMPO REAL)
+    box:GetPropertyChangedSignal("Text"):Connect(function()
+        if numericBoxes[text] then
+            box.Text = box.Text:gsub("[^%d%.%-]", "")
+        end
+    end)
+
+    -- 💾 GUARDAR
+    box.FocusLost:Connect(function()
+        local input = box.Text
+        if input == "" then return end
+
+        local value
+
+        if numericBoxes[text] then
+            value = tonumber(input)
+            if not value then
+                box.Text = tostring(getgenv()[data.variable] or "")
+                return
+            end
+        else
+            value = input
+        end
+
+        -- ❌ no repetir
+        if getgenv()[data.variable] == value then return end
+
+        getgenv()[data.variable] = value
+
+        if data.url then
+            loadstring(game:HttpGet(data.url))()
+        end
+    end)
+
+    return -- 🔥 CLAVE
+    end
+    -- 🔹 BOTÓN NORMAL (TU SISTEMA)
+    button.Size = UDim2.new(1,0,1,0)
+
+    local isRedToggle = redToggleButtons[text]
+local isToggle = isRedToggle or not noToggleButtons[text]
+
     if isToggle then
-        
         if buttonStates[text] == nil then
             buttonStates[text] = false
         end
-        
+
         local function updateVisual()
-            if buttonStates[text] then
-                b.Text = text .. "  [ON]"
-                b.BackgroundColor3 = Color3.fromRGB(0,120,0)
-            else
-                b.Text = text .. "  [OFF]"
-                b.BackgroundColor3 = Color3.fromRGB(20,20,20)
-            end
+    if isRedToggle then
+        button.Text = text
+
+        if buttonStates[text] then
+            button.BackgroundColor3 = Color3.fromRGB(120,0,0)
+        else
+            button.BackgroundColor3 = Color3.fromRGB(20,20,20)
         end
-        
-        updateVisual()
-        
-        b.MouseButton1Click:Connect(function()
-            buttonStates[text] = not buttonStates[text]
-            updateVisual()
-            callback(buttonStates[text]) -- manda true o false
-        end)
-        
     else
-        b.Text = text
-        b.BackgroundColor3 = Color3.fromRGB(20,20,20)
-        
-        b.MouseButton1Click:Connect(function()
-            callback()
-        end)
+        if buttonStates[text] then
+            button.Text = text.." [ON]"
+            button.BackgroundColor3 = Color3.fromRGB(0,120,0)
+        else
+            button.Text = text.." [OFF]"
+            button.BackgroundColor3 = Color3.fromRGB(20,20,20)
+        end
     end
 end
+
+        updateVisual()
+
+        button.MouseButton1Click:Connect(function()
+            buttonStates[text] = not buttonStates[text]
+            updateVisual()
+            callback(buttonStates[text])
+        end)
+
+    else
+        button.Text = text
+        button.BackgroundColor3 = Color3.fromRGB(20,20,20)
+
+        local clicking = false
+
+button.MouseButton1Click:Connect(function()
+    if clicking then return end -- 🔥 evita spam
+    clicking = true
+
+    if not noGreenFlash[text] then
+        local oldColor = button.BackgroundColor3
+        button.BackgroundColor3 = Color3.fromRGB(0,120,0)
+
+        task.delay(0.5,function() -- más rápido
+            if button then
+                button.BackgroundColor3 = oldColor
+            end
+            clicking = false
+        end)
+    else
+        clicking = false
+    end
+
+    if callback then
+        callback()
+    end
+end)
+    end
+end
+    
 -- ======================
 -- SCROLL POR SUBMENU
 -- ======================
 local scrollConfig = {
     ["MAIN"] = true,
+    ["COMBAT"] = true,
     ["ESP"] = true,
-    ["INOCENT"] = false,
-    ["MURDERER"] = true,
-    ["SHERIFF"] = true,
-    ["COINS"] = false,
-    ["TRAPS"] = false,
-    ["TELEPORT"] = false,
-    ["FAKEBOMB"] = false,
-    ["PACK ANIMATION"] = true,
-    ["EMOTES"] = false,
-    ["FLING"] = false,
-    ["ANTIS"] = false,
+    ["TELEPORT"] = true,
+    ["AUTO FARM"] = true,
     ["Fps"] = false,
     ["YOUTUBE"] = false
 }
 -- ======================
 -- MENUS
 -- ======================
-local menuOrder = {"MAIN","ESP","INOCENT","MURDERER","SHERIFF","COINS","TRAPS","TELEPORT","FAKEBOMB","PACK ANIMATION","EMOTES","FLING","Fps","YOUTUBE"}
+local menuOrder = {"MAIN","COMBAT","ESP","TELEPORT","AUTO FARM","Fps","YOUTUBE"}
 local menuData = {
     ["MAIN"] = {
-        "LOCALPLAYER",
-        "DESYNC",
-        "INVISIBLE",
-        "FULL BRIGHT",
-        "ROUND TIMER",
-        "SECOND LIFE",
-        "X-RAY",
-        
-    },
-    ["MURDERER"] = {
-        "AUTO THROW KNIFE",
-        "AUTO THROW KNIFE (KILL)",
+    "DESYNC",
+    "INVISIBLE",
+    "JUMP(BUTTON)",
+    "SPEED",
+    "JUMPPOWER",
+    "GRAVITY",
+    "RESET STATS",
+    "NOCLIP",
+    "INFINITI JUMP",
+    "FLY SPEED",
+    "FLY",
+},
+    ["COMBAT"] = {
+        "AIMBOT LIGERO",
+        "AIMBOT INSTANT",
+        "FOV SIZE",
+        "AIMBOT OP",
+        "AUTO SHOOT PLAYERS",
         "HITBOX EXTENDER",
-        "Kill Gui",
-        "Auto Kill sheriffs"
+        "SIZE",
+        "TRASPARENCY 0-1",
+        "SILENT AIM",
+        "BULLET TRACERS",
+        "INSTANT RELOAD",
+        "BULLET SIZE", 
     },
     ["ESP"] = {
-        "ESP MURDERER",
-        "ESP INOCENT",
-        "ESP SHERIFF",
-        "ESP GUNDROP",
-        "ESP BOTTOM TRACERS",
-        "ESP TOP TRACERS",
-        "ESP DISTANCE"
+        "ESP PLAYERS",
+        "ESP PLAYERS (NO LAG)",
+        "ESP NAME",
+        "ESP DISTANCE",
+        "ESP TRACERS",
+        "X-RAY",
+        "XRAY-TRANSPARENCY",
+        
     },
-    ["INOCENT"] = {
-        "GRAB GUN (TELEPORT)",
-        "AUTO GRAB GUN (OP)"
-    },   
     ["TELEPORT"] = {
-        "TP A MAP",
-        "TP A LOBBY",
-        "TP AEL MURDERER",
-        "TP AEL SHERIFF",
-        "TP TOOL",
-        "TP A PLAYERS (GUI)"
+        "MAP",
+        "LOBBY",
+        "PLAYER NAME",
+        "TP TO PLAYER",
     },
-    ["SHERIFF"] = {
-        "SHOOT MURDERER",
-        "SHOOT MURDERER (BUTTON)",
-        "AUTO SHOOT MURDERER"
-    },
-    ["EMOTES"] = {
-        "Gaze Emote",
-        "FAKE DIE (GUI)",
-        "SEMI-INVISIBLE"
-    },
-    ["TRAPS"] = {
-        "ANTI TRAPS",
-        "ESP BOX A TRAPS",
-        "ESP TEXT A TRAPS",
-        "ESP TRACERS A TRAPS",
-        "TRAP PLAYERS (BUTTON)"
-    },
-    ["COINS"] = {
-        "AUTO COLLECT COINS",
-        "ESP COINS"
-    },
-    ["FAKEBOMB"] = {
-        "AUTO DOBLE JUMP",
-        "AUTO DOBLE JUMP (FAST)",
-        "MODIFICAR JUMP POWER",
-        "AUTO EQUIP FAKE BOMB"
-    },
-    ["PACK ANIMATION"] = {
-        "ELIGIR ANIMACIÓN",
-        "ELIGIR ANIMACIÓN (CÓDIGO)"
-    },
-    ["FLING"] = {
-        "Touch Fling",
-        "Fuerza de el Touch Fling",
-        "Anti Fling",
-        "FE FLING GUI",
-        "Fling Sheriff",
-        "Fling Murderer"
+    ["AUTO FARM"] = {
+        "AUTO FARM KILLS (beta)",
     },
     ["Fps"] = {
         "Fps Boost"
@@ -273,10 +754,13 @@ local menuData = {
     }
 }
 
+
 local function clearFrame(frame)
     for _,v in pairs(frame:GetChildren()) do
-        if v:IsA("TextButton") or v:IsA("TextLabel") then
-            v:Destroy()
+        if not v:IsA("UIPadding") then
+            if v:IsA("TextButton") or v:IsA("TextLabel") or v:IsA("Frame") then
+                v:Destroy()
+            end
         end
     end
     frame.CanvasPosition = Vector2.new(0,0)
@@ -284,8 +768,8 @@ end
 
 for i,menu in ipairs(menuOrder) do
     createMenuButton(leftFrame, menu, 10+(i-1)*35, function()
-        clearFrame(rightFrame)
-        -- aplicar scroll SOLO a este submenu
+    clearFrame(rightFrame)
+        -- scroll
         if scrollConfig[menu] then
             rightFrame.ScrollBarThickness = 6
             rightFrame.AutomaticCanvasSize = Enum.AutomaticSize.Y
@@ -294,130 +778,189 @@ for i,menu in ipairs(menuOrder) do
             rightFrame.AutomaticCanvasSize = Enum.AutomaticSize.None
             rightFrame.CanvasSize = UDim2.new(0,0,0,0)
         end
+
         local titleLabel = Instance.new("TextLabel", rightFrame)
         titleLabel.Size = UDim2.new(1,0,0,30)
         titleLabel.BackgroundTransparency = 1
-        titleLabel.Text = menu
+        titleLabel.Text = menuNames[menu] or menu
         titleLabel.TextColor3 = Color3.fromRGB(255,255,255)
         titleLabel.Font = Enum.Font.GothamBold
         titleLabel.TextSize = 18
+
         local oy = 40
+
         for _,opt in ipairs(menuData[menu]) do
-    createButton(rightFrame,opt,oy,function(state)
-                -- BOTONES CON SU FUNCION
-                 if opt == "ESP INOCENT" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text154/refs/heads/main/Text154.lua"))()
-                    elseif opt == "ESP MURDERER" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text156/refs/heads/main/Text156.lua"))()
-                    elseif opt == "ESP SHERIFF" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text155/refs/heads/main/Text155.lua"))()
-                    elseif opt == "ESP GUNDROP" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text157/refs/heads/main/Text157.lua"))()
-                    elseif opt == "ESP BOTTOM TRACERS" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text311/refs/heads/main/Text311.lua"))()
-                    elseif opt == "ESP TOP TRACERS" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text312/refs/heads/main/Text312.lua"))()
-                    elseif opt == "ESP DISTANCE" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text313/refs/heads/main/Text313.lua"))()
-                    elseif opt == "SHOOT MURDERER" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text314/refs/heads/main/Text314.lua"))()
-                    elseif opt == "SHOOT MURDERER (BUTTON)" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text27/refs/heads/main/Text27.lua"))()
-                elseif opt == "AUTO SHOOT MURDERER" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text146/refs/heads/main/Text146.lua"))()
-                elseif opt == "Kill Gui" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text16/refs/heads/main/Text16.lua"))()
-                elseif opt == "HITBOX EXTENDER" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Hitbox-extender-/refs/heads/main/Hitbox%20extender"))()
-                elseif opt == "AUTO THROW KNIFE" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text315/refs/heads/main/Text315.lua"))()
-                    elseif opt == "AUTO THROW KNIFE (KILL)" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text23/refs/heads/main/Text23"))()
-                elseif opt == "Auto Kill sheriffs" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text316/refs/heads/main/Text316.lua"))()
-                elseif opt == "ROUND TIMER" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text317/refs/heads/main/Text317.lua"))()
-                elseif opt == "GRAB GUN (TELEPORT)" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text152/refs/heads/main/Text152.lua"))()
-                elseif opt == "AUTO GRAB GUN (OP)" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text153/refs/heads/main/Text153.lua"))()
-                elseif opt == "INVISIBLE" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text25/refs/heads/main/Text25.lua",true))()
-                elseif opt == "DESYNC" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text24/refs/heads/main/Text23.lua",true))()
-                elseif opt == "FULL BRIGHT" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text279/refs/heads/main/Text279.lua"))()
-                elseif opt == "Anti Fling" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text280/refs/heads/main/Text280.lua"))()
-                elseif opt == "Touch Fling" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text281/refs/heads/main/Text281.lua"))()
-                elseif opt == "Fuerza de el Touch Fling" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text282/refs/heads/main/Text282.lua"))()
-                elseif opt == "Fps Boost" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Fps-Boost-/refs/heads/main/FPS_BOOST_UNIVERSAL.lua"))()
-                elseif opt == "AUTO DOBLE JUMP" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text318/refs/heads/main/Text318.lua"))()
-                elseif opt == "AUTO DOBLE JUMP (FAST)" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text319/refs/heads/main/Text319.lua"))()
-                elseif opt == "MODIFICAR JUMP POWER" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text320/refs/heads/main/Text320.lua"))()
-                elseif opt == "AUTO EQUIP FAKE BOMB" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text321/refs/heads/main/Text321.lua"))()
-                elseif opt == "ELIGIR ANIMACIÓN (CÓDIGO)" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text325/refs/heads/main/Text325.lua"))()
-                elseif opt == "ELIGIR ANIMACIÓN" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Editor-de-pack-de-animaci-n-/refs/heads/main/Pack%20Animation.lua"))()
-                elseif opt == "ESP BOX A TRAPS" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text149/refs/heads/main/Text149.lua"))()
-                elseif opt == "TP A MAP" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text326/refs/heads/main/Text326.lua"))()
-                elseif opt == "TP A LOBBY" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text327/refs/heads/main/Text327.lua"))()
-                elseif opt == "TP AEL MURDERER" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text328/refs/heads/main/Text328.lua"))()
-                elseif opt == "TP AEL SHERIFF" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text329/refs/heads/main/Text329.lua"))()
-                    elseif opt == "TP A PLAYERS (GUI)" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text330/refs/heads/main/Text330.lua"))()
-                    elseif opt == "TP TOOL" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text331/refs/heads/main/Text331.lua"))()
-                    elseif opt == "ESP TEXT A TRAPS" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text150/refs/heads/main/Text150.lua"))()
-                    elseif opt == "ANTI TRAPS" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text151/refs/heads/main/Text151.lua"))()
-                    elseif opt == "ESP TRACERS A TRAPS" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text332/refs/heads/main/Text332.lua"))()
-                    elseif opt == "TRAP PLAYERS (BUTTON)" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text333/refs/heads/main/Text333.lua"))()
-                    elseif opt == "AUTO COLLECT COINS" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text22/refs/heads/main/Text22.lua"))()
-                    elseif opt == "ESP COINS" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text148/refs/heads/main/Text148.lua"))()
-                    elseif opt == "FAKE DIE (GUI)" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text334/refs/heads/main/Text334.lua"))()
-                elseif opt == "LOCALPLAYER" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text8/refs/heads/main/Text8.lua"))()
-                elseif opt == "SEMI-INVISIBLE" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text335/refs/heads/main/Text335.lua"))()
-                elseif opt == "SECOND LIFE" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text26/refs/heads/main/Text26.lua"))()
-                elseif opt == "X-RAY" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text147/refs/heads/main/Text147.lua"))()    
-                elseif opt == "Fling Sheriff" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text361/refs/heads/main/Text361.lua"))()
-                elseif opt == "Fling Murderer" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text360/refs/heads/main/Text360.lua"))()
-                elseif opt == "FE FLING GUI" then
-                    loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Fling-Fe/refs/heads/main/FlingFeGui"))()     
-                elseif opt == "Gaze Emote" then
-                    loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Gaze-emote-74592"))()          
+
+    -- CREAR TITULO SI EXISTE
+    if buttonTitles[opt] then
+        local section = Instance.new("TextLabel", rightFrame)
+        section.Size = UDim2.new(1,-20,0,25)
+        section.Position = UDim2.new(0,10,0,oy)
+        section.BackgroundTransparency = 1
+        section.Text = buttonTitles[opt]
+        section.TextColor3 = Color3.fromRGB(200,200,200)
+        section.Font = Enum.Font.GothamBold
+        section.TextSize = 16
+        section.TextXAlignment = Enum.TextXAlignment.Left
+
+        oy += 30
+    end
+
+    local topTitle = topTitles[opt]
+
+if topTitle then
+    local section = Instance.new("TextLabel", rightFrame)
+    section.Size = UDim2.new(1,0,0,30)
+    section.Position = UDim2.new(0,0,0,oy)
+    section.BackgroundTransparency = 1
+    section.Text = topTitle
+    section.TextColor3 = Color3.fromRGB(255,255,255)
+    section.Font = Enum.Font.GothamBold
+    section.TextSize = 18
+    section.TextXAlignment = Enum.TextXAlignment.Center
+
+    oy += 35 -- 🔥 baja el botón
                 end
-            end)
-            oy += 40
+
+    createButton(rightFrame,opt,oy,function(state)
+
+        if opt == "RESET STATS" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Reset-speed-jumpPower-y-gravedad-/refs/heads/main/Reset.lua"))()
+
+        elseif opt == "ESP PLAYERS" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text416/refs/heads/main/Text416.lua"))()
+            
+        elseif opt == "ESP PLAYERS (NO LAG)" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text417/refs/heads/main/Text417.lua"))()
+
+        elseif opt == "ESP NAME" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text418/refs/heads/main/Text418.lua"))()
+                            
+        elseif opt == "ESP DISTANCE" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text419/refs/heads/main/Text419.lua"))()
+                            
+        elseif opt == "ESP TRACERS" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text420/refs/heads/main/Text420.lua"))()
+
+        elseif opt == "AUTO SHOOT PLAYERS" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text424/refs/heads/main/Text424.lua"))()
+                            
+        elseif opt == "HITBOX EXTENDER" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text425/refs/heads/main/Text425.lua"))()
+                            
+        elseif opt == "AUTO FARM KILLS (beta)" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text426/refs/heads/main/Text426.lua"))()
+
+        elseif opt == "INVISIBLE" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text427/refs/heads/main/Text427.lua"))()
+                            
+        elseif opt == "MAP" then
+            getgenv().TP_MODE = "JUMPPAD"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text430/refs/heads/main/Text430.lua"))()
+                            
+        elseif opt == "DESYNC" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text428/refs/heads/main/Text428.lua"))()
+
+        elseif opt == "JUMP(BUTTON)" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text429/refs/heads/main/Text429.lua"))()
+                            
+        elseif opt == "LOBBY" then
+            getgenv().TP_MODE = "LOBBY"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text430/refs/heads/main/Text430.lua"))()
+
+        elseif opt == "SILENT AIM" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text431/refs/heads/main/Text431.lua"))()
+                            
+        elseif opt == "INSTANT RELOAD" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text432/refs/heads/main/Text432.lua"))()
+
+        elseif opt == "AIMBOT LIGERO" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text422/refs/heads/main/Text422.lua"))()
+                            
+        elseif opt == "AIMBOT INSTANT" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text423/refs/heads/main/Text423.lua"))()
+                            
+        elseif opt == "AIMBOT OP" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text421/refs/heads/main/Text421.lua"))()
+
+        elseif opt == "X-RAY" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text147/refs/heads/main/Text147.lua"))()
+                            
+        elseif opt == "TP TO PLAYER" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text408/refs/heads/main/Text408.lua"))()
+
+        elseif opt == "BULLET TRACERS" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text434/refs/heads/main/Text434.lua"))()      
+        
+        elseif opt == "FLY" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Fly/refs/heads/main/Fly.lua"))()
+
+        elseif opt == "INFINITI JUMP" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/INFINITI-JUMP/refs/heads/main/Salto%20infinito.lua",true))()
+
+        elseif opt == "DESYNC" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text24/refs/heads/main/Text23.lua",true))()
+
+        elseif opt == "LOCALPLAYER" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text8/refs/heads/main/Text8.lua"))()
+
+        elseif opt == "NOCLIP" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/NOCLIP/refs/heads/main/NOCLIP.lua"))()
+
+        elseif opt == "HITBOX EXTENDER" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text368/refs/heads/main/Text368.lua"))()
+
+        elseif opt == "Fps Boost" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Fps-Boost-/refs/heads/main/FPS_BOOST_UNIVERSAL.lua"))()
+
+        elseif opt == "YOUTUBE:SBS HUB" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Copiar-canal/refs/heads/main/Suscribete.lua"))()
+
+        elseif opt == "TP TOOL" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text331/refs/heads/main/Text331.lua"))()
+                            
         end
+
     end)
+    local custom = BUTTON_CUSTOM[opt]
+local offsetY = custom and custom.y or 0
+
+local isDoubleLeft = doubleButtons[opt] ~= nil
+local isDoubleRight = false
+
+for left, right in pairs(doubleButtons) do
+    if opt == right then
+        isDoubleRight = true
+        break
+    end
 end
--- ICONO SBS PARA ABRIR/CERRAR (MOVIBLE)
+
+-- solo bajar después del botón derecho o botón normal
+if not isDoubleLeft then
+    oy += 40 + offsetY
+end
+
+local customTitle = customTitles[opt]
+
+if customTitle then
+    local section = Instance.new("TextLabel", rightFrame)
+    section.Size = UDim2.new(1,-20,0,30)
+    section.Position = UDim2.new(0,10,0,oy)
+    section.BackgroundTransparency = 1
+    section.Text = customTitle
+    section.TextColor3 = Color3.fromRGB(255,255,255)
+    section.Font = Enum.Font.GothamBold
+    section.TextSize = 18
+    section.TextXAlignment = Enum.TextXAlignment.Center
+    
+    oy += 35
+                end
+            end
+
+end)
+end
+
+-- ICONO SBS PARA ABRIR/CERRAR
 local toggle = Instance.new("TextButton", screenGui)
 toggle.Size = UDim2.new(0,60,0,60)
 toggle.Position = UDim2.new(1,-80,0,20)
