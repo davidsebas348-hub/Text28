@@ -701,8 +701,10 @@ end
 -- ======================
 local scrollConfig = {
     ["MAIN"] = true,
-    ["COMBAT"] = true,
     ["ESP"] = true,
+    ["INOCENT"]
+    ["SHERIFF"] = true,
+    ["MURDERER"] = true,
     ["TELEPORT"] = true,
     ["AUTO FARM"] = true,
     ["Fps"] = false,
@@ -742,10 +744,11 @@ local menuData = {
     },
     ["ESP"] = {
         "ESP PLAYERS",
-        "ESP PLAYERS (NO LAG)",
+        "ESP GUN",
         "ESP NAME",
         "ESP DISTANCE",
         "ESP TRACERS",
+        "ESP ABILITY",
         "X-RAY",
         "XRAY-TRANSPARENCY",
         
