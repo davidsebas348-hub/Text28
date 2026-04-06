@@ -702,7 +702,7 @@ end
 local scrollConfig = {
     ["MAIN"] = true,
     ["ESP"] = true,
-    ["INOCENT"]
+    ["INOCENT"] = true,
     ["SHERIFF"] = true,
     ["MURDERER"] = true,
     ["TELEPORT"] = true,
