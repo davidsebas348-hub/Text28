@@ -728,19 +728,9 @@ local menuData = {
     "FLY SPEED",
     "FLY",
 },
-    ["COMBAT"] = {
-        "AIMBOT LIGERO",
-        "AIMBOT INSTANT",
-        "FOV SIZE",
-        "AIMBOT OP",
-        "AUTO SHOOT PLAYERS",
-        "HITBOX EXTENDER",
-        "SIZE",
-        "TRASPARENCY 0-1",
-        "SILENT AIM",
-        "BULLET TRACERS",
-        "INSTANT RELOAD",
-        "BULLET SIZE", 
+    ["MURDERER"] = {
+        "KILL ALL",
+        "KILL SHERIFF",
     },
     ["ESP"] = {
         "ESP PLAYERS",
@@ -860,14 +850,16 @@ if topTitle then
         elseif opt == "ESP TRACERS" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text420/refs/heads/main/Text420.lua"))()
 
-        elseif opt == "AUTO SHOOT PLAYERS" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text424/refs/heads/main/Text424.lua"))()
+        elseif opt == "KILL ALL" then
+            getgenv().TARGET = "All"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text16/refs/heads/main/Text16.lua"))()
                             
-        elseif opt == "HITBOX EXTENDER" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text425/refs/heads/main/Text425.lua"))()
+        elseif opt == "KILL SHERIFF" then
+            getgenv().TARGET = "Sheriff"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text16/refs/heads/main/Text16.lua"))()
                             
-        elseif opt == "AUTO FARM KILLS (beta)" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text426/refs/heads/main/Text426.lua"))()
+        elseif opt == "KILL PLAYER" then
+            loadstring(game:HttpGet(""))()
 
         elseif opt == "INVISIBLE" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text427/refs/heads/main/Text427.lua"))()
@@ -879,14 +871,14 @@ if topTitle then
         elseif opt == "DESYNC" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text428/refs/heads/main/Text428.lua"))()
 
-        elseif opt == "JUMP(BUTTON)" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text429/refs/heads/main/Text429.lua"))()
+        elseif opt == "AUTO KILL SHERIFF" then
+            loadstring(game:HttpGet(""))()
                             
         elseif opt == "LOBBY" then
             getgenv().TP_MODE = "LOBBY"
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text430/refs/heads/main/Text430.lua"))()
 
-        elseif opt == "SILENT AIM" then
+        elseif opt == "" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text431/refs/heads/main/Text431.lua"))()
                             
         elseif opt == "INSTANT RELOAD" then
