@@ -1,5 +1,5 @@
 -- ======================
--- SBS HUB COMPLETO FINAL  (Pistol Arena)
+-- SBS HUB COMPLETO FINAL  (Pistol Arena
 -- ======================
 repeat task.wait() until game:IsLoaded()
 
@@ -23,6 +23,11 @@ local numericBoxes = {
     ["TRASPARENCY 0-1"] = true,
     ["FOV SIZE"] = true,
     ["BULLET SIZE"] = true,
+}
+-- tener 2 botones en una ocupando espacio de 1 botón 
+local doubleButtons = {
+    ["MAP"] = "LOBBY",
+    ["PLAYER NAME"] = "TP TO PLAYER"
 }
 
 -- poner título arriba de tal botón 
@@ -148,11 +153,10 @@ local buttonTitles = {
     
     ["Fps Boost"] = "PERFORMANCE"
 }
-
 -- togle v2
 local redToggleButtons = {
-    ["X-AY"] = true,
-    ["BULLET TRACER"] = true,
+    ["X-RAY"] = true,
+    ["BULLET TRACERS"] = true,
 }
 
 getgenv().SBS_BUTTON_STATES = getgenv().SBS_BUTTON_STATES or {}
@@ -473,7 +477,7 @@ local function createButton(parent,text,y,callback)
         extraY = custom.y or 0
     end
 
-     local isDoubleLeft = doubleButtons[text] ~= nil
+    local isDoubleLeft = doubleButtons[text] ~= nil
 local isDoubleRight = false
 
 for left, right in pairs(doubleButtons) do
@@ -535,8 +539,18 @@ end
                 local opt = options[index]
                 label.Text = opt.name
                 label.TextColor3 = opt.color
-                if multiConfig.variable then
-                    getgenv()[multiConfig.variable] = opt.name
+                if index ~= 0 then
+    local opt = options[index]
+
+    -- borrar variables anteriores
+    for _, option in ipairs(options) do
+        if option.name then
+            getgenv()[option.name] = nil
+        end
+    end
+
+    -- activar solo la actual
+    getgenv()[opt.name] = true
                 end
             end
         end
