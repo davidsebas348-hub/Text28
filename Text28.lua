@@ -715,7 +715,7 @@ local scrollConfig = {
 -- ======================
 -- MENUS
 -- ======================
-local menuOrder = {"MAIN","COMBAT","ESP","TELEPORT","AUTO FARM","Fps","YOUTUBE"}
+local menuOrder = {"MAIN","ESP","INOCENT","SHERIFF","MURDERER","TELEPORT","AUTO FARM","Fps","YOUTUBE"}
 local menuData = {
     ["MAIN"] = {
     "DESYNC",
@@ -733,6 +733,10 @@ local menuData = {
     ["MURDERER"] = {
         "KILL ALL",
         "KILL SHERIFF",
+    },
+    ["INOCENT"] = {
+        "GRAB GUN",
+        "AUTO GRAB GUN",
     },
     ["ESP"] = {
         "ESP PLAYERS",
@@ -880,8 +884,8 @@ if topTitle then
             getgenv().TP_MODE = "LOBBY"
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text430/refs/heads/main/Text430.lua"))()
 
-        elseif opt == "" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text431/refs/heads/main/Text431.lua"))()
+        elseif opt == "AUTO GRAB GUN" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text153/refs/heads/main/Text153.lua"))()
                             
         elseif opt == "INSTANT RELOAD" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text432/refs/heads/main/Text432.lua"))()
