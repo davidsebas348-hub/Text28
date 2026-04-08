@@ -259,7 +259,7 @@ local textboxButtons = {
     variable = "HITBOX_TRANSPARENCY",
     url = nil
     },
-    ["PLAYER NAME"] = {
+    ["PLAYER NAME."] = {
     variable = "TargetPlayerName",
     url = nil
     },
@@ -776,7 +776,7 @@ local menuData = {
     ["FLING"] = {
         "TOUCH FLING",
         "POWER",
-        "PLAYER NAME",
+        "PLAYER NAME.",
         "FLING PLAYER",
     },
     ["ESP"] = {
@@ -931,10 +931,10 @@ if topTitle then
             getgenv().TP_MODE = "LOBBY"
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text430/refs/heads/main/Text430.lua"))()
 
-        elseif opt == "AUTO DOBLE JUMP" then
+        elseif opt == "AUTO DOUBLE JUMP" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text318/refs/heads/main/Text318.lua"))()
                             
-        elseif opt == "AUTO DOBLE JUMP (FAST)" then
+        elseif opt == "AUTO DOUBLE JUMP (FAST)" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text319/refs/heads/main/Text319.lua"))()
                             
         elseif opt == "" then
@@ -998,7 +998,7 @@ if topTitle then
         elseif opt == "INFINITI JUMP" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/INFINITI-JUMP/refs/heads/main/Salto%20infinito.lua",true))()
 
-        elseif opt == "DESYNC" then
+        elseif opt == "" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text24/refs/heads/main/Text23.lua",true))()
 
         elseif opt == "LOCALPLAYER" then
