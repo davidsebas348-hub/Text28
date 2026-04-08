@@ -58,16 +58,41 @@ local menuNames = {
 -- ======================
 
 local multiButtons = {
-    [""] = { 
-        variable = "",
+    ["MODE: NORMAL"] = {
         options = {
-            {name = "BLACK", color = Color3.fromRGB(0, 0, 0)},
+            {
+                name = "MODE: FAST",
+                variable = "aim_head",
+                color = Color3.fromRGB(255, 0, 0)
+            },
+            {
+                name = "MODE: NORMAL",
+                variable = "aim_torso",
+                color = Color3.fromRGB(0, 255, 0)
+            }
         }
     },
 
-    -- puedes meter 30+ aquí sin problema
+    ["ESP COLOR"] = {
+        options = {
+            {
+                name = "BLACK",
+                variable = "esp_black",
+                color = Color3.fromRGB(0, 0, 0)
+            },
+            {
+                name = "RED",
+                variable = "esp_red",
+                color = Color3.fromRGB(255, 0, 0)
+            },
+            {
+                name = "BLUE",
+                variable = "esp_blue",
+                color = Color3.fromRGB(0, 100, 255)
+            }
+        }
+    }
 }
-
 -- ======================
 -- CONFIG GLOBAL BOTONES (FALTABA ESTO)
 -- ======================
@@ -552,7 +577,15 @@ end
     end
 
     -- activar solo la actual
-    getgenv()[opt.name] = true
+    for _, option in ipairs(options) do
+    if option.variable then
+        getgenv()[option.variable] = false
+    end
+end
+
+if opt.variable then
+    getgenv()[opt.variable] = true
+end
                 end
             end
         end
@@ -768,6 +801,7 @@ local menuData = {
         "AUTO DOBLE JUMP (EQUIP TOOL)",
         "FAST JUMP",
         "JUMP POWER OF THE JUMP",
+        "MODE: NORMAL",
         "AUTO EQUIP FAKEBOMB",
     },
     ["AUTO FARM"] = {
