@@ -131,8 +131,8 @@ local buttonTitles = {
     ["PLAYER NAME"] = "PLAYERS",
     
 
-    ["AIMBOT LIGERO"] = "AIM",
-    ["AUTO SHOOT PLAYERS"] = "TROLL",
+    ["AUTO DOBLE JUMP"] = "BUTTONS",
+    [""] = "TROLL", 
     
     ["ESP TO ALL ALARMS"] = "END",
     ["ESP TO ALL THE TOKEN"] = "ITEMS",
@@ -708,6 +708,7 @@ local scrollConfig = {
     ["SHERIFF"] = true,
     ["MURDERER"] = true,
     ["TELEPORT"] = true,
+    ["FAKEBOMB"] = true,
     ["FLING"] = true,
     ["AUTO FARM"] = true,
     ["Fps"] = false,
@@ -716,7 +717,7 @@ local scrollConfig = {
 -- ======================
 -- MENUS
 -- ======================
-local menuOrder = {"MAIN","ESP","INOCENT","SHERIFF","MURDERER","TELEPORT","FLING","AUTO FARM","Fps","YOUTUBE"}
+local menuOrder = {"MAIN","ESP","INOCENT","SHERIFF","MURDERER","TELEPORT","FAKEBOMB","FLING","AUTO FARM","Fps","YOUTUBE"}
 local menuData = {
     ["MAIN"] = {
     "DESYNC",
@@ -750,8 +751,6 @@ local menuData = {
         "ESP GUN",
         "NO ESP TO ME",
         "ESP NAME",
-        "ESP DISTANCE",
-        "ESP TRACERS",
         "ESP ABILITY",
         "X-RAY",
         "XRAY-TRANSPARENCY",
@@ -762,6 +761,14 @@ local menuData = {
         "LOBBY",
         "PLAYER NAME",
         "TP TO PLAYER",
+    },
+    ["FAKEBOMB"] = {
+        "AUTO DOBLE JUMP",
+        "AUTO DOBLE JUMP (FAST)",
+        "AUTO DOBLE JUMP (EQUIP TOOL)",
+        "FAST JUMP",
+        "JUMP POWER OF THE JUMP",
+        "AUTO EQUIP FAKEBOMB",
     },
     ["AUTO FARM"] = {
         "AUTO FARM KILLS (beta)",
@@ -891,6 +898,44 @@ if topTitle then
             getgenv().TP_MODE = "LOBBY"
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text430/refs/heads/main/Text430.lua"))()
 
+
+        elseif opt == "AUTO DOBLE JUMP" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text318/refs/heads/main/Text318.lua"))()
+                            
+        elseif opt == "AUTO DOBLE JUMP (FAST)" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text319/refs/heads/main/Text319.lua"))()
+                            
+        elseif opt == "" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text420/refs/heads/main/Text420.lua"))()
+
+        elseif opt == "" then
+            getgenv().TARGET = "All"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text16/refs/heads/main/Text16.lua"))()
+                            
+        elseif opt == "" then
+            getgenv().TARGET = "Sheriff"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text16/refs/heads/main/Text16.lua"))()
+                            
+        elseif opt == "" then
+            loadstring(game:HttpGet(""))()
+
+        elseif opt == "" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text427/refs/heads/main/Text427.lua"))()
+                            
+        elseif opt == "" then
+            getgenv().TP_MODE = "JUMPPAD"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text430/refs/heads/main/Text430.lua"))()
+                            
+        elseif opt == "" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text428/refs/heads/main/Text428.lua"))()
+
+        elseif opt == "" then
+            loadstring(game:HttpGet(""))()
+                            
+        elseif opt == "" then
+            getgenv().TP_MODE = "LOBBY"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text430/refs/heads/main/Text430.lua"))()
+              
         elseif opt == "AUTO GRAB GUN" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text153/refs/heads/main/Text153.lua"))()
                             
