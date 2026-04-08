@@ -275,8 +275,8 @@ local textboxButtons = {
     variable = "XRAY_TRANSPARENCY",
     url = "https://raw.githubusercontent.com/davidsebas348-hub/Text433/refs/heads/main/Text433.lua"
     },
-    ["RANGE"] = {
-    variable = "RANGE",
+    ["JUMP POWER OF THE DOUBLE JUMP"] = {
+    variable = "FAKE_JUMP_POWER",
     url = nil
 }
 }
@@ -796,12 +796,11 @@ local menuData = {
         "TP TO PLAYER",
     },
     ["FAKEBOMB"] = {
-        "AUTO DOBLE JUMP",
-        "AUTO DOBLE JUMP (FAST)",
-        "AUTO DOBLE JUMP (EQUIP TOOL)",
-        "FAST JUMP",
-        "JUMP POWER OF THE JUMP",
+        "AUTO DOUBLE JUMP",
+        "AUTO DOUBLE JUMP (FAST)",
+        "AUTO DOUBLE JUMP (EQUIP TOOL)",
         "MODE: NORMAL",
+        "JUMP POWER OF THE DOUBLE JUMP",  
         "AUTO EQUIP FAKEBOMB",
     },
     ["AUTO FARM"] = {
@@ -931,7 +930,6 @@ if topTitle then
         elseif opt == "LOBBY" then
             getgenv().TP_MODE = "LOBBY"
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text430/refs/heads/main/Text430.lua"))()
-
 
         elseif opt == "AUTO DOBLE JUMP" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text318/refs/heads/main/Text318.lua"))()
