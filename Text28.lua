@@ -41,7 +41,7 @@ local topTitles = {
 -- poner títulos abajo de tal botón
 local customTitles = {
     ["SPED"] = "MOVEMENT SETTINGS",
-    ["TRASPARENCY 0-1"] = "OP",
+    ["TRSPARENCY 0-1"] = "OP",
     ["ESP NAE"] = "ESP VISUAL",
 }
 
@@ -768,6 +768,9 @@ local menuData = {
     ["MURDERER"] = {
         "KILL ALL",
         "KILL SHERIFF",
+        "HITBOX EXTENDER",
+        "SIZE",
+        "TRASPARENCY 0-1",
     },
     ["INOCENT"] = {
         "GRAB GUN",
@@ -937,8 +940,8 @@ if topTitle then
         elseif opt == "AUTO DOUBLE JUMP (FAST)" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text319/refs/heads/main/Text319.lua"))()
                             
-        elseif opt == "" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text420/refs/heads/main/Text420.lua"))()
+        elseif opt == "HITBOX EXTENDER" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text368/refs/heads/main/Text368.lua"))()
 
         elseif opt == "" then
             getgenv().TARGET = "All"
