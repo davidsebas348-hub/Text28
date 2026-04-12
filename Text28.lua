@@ -950,9 +950,8 @@ if topTitle then
         elseif opt == "SHOOT THE MURDERER (BUTTON)" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text27/refs/heads/main/Text27.lua"))()
                             
-        elseif opt == "" then
-            getgenv().TARGET = "Sheriff"
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text16/refs/heads/main/Text16.lua"))()
+        elseif opt == "¿ONLY VISIBLE?" then
+            loadstring("getgenv().OnlyVisible = not getgenv().OnlyVisible")()
                             
         elseif opt == "" then
             loadstring(game:HttpGet(""))()
