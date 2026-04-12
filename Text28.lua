@@ -61,14 +61,14 @@ local multiButtons = {
     ["MODE: NORMAL"] = {
         options = {
             {
-                name = "MODE: FAST",
-                variable = "aim_head",
-                color = Color3.fromRGB(255, 0, 0)
+                name = "MODE: BLE",
+                variable = "OnlyVisie",
+                color = Color3.fromRGB(00, 255, 0)
             },
             {
-                name = "MODE: NORMAL",
+                name = "MODE: NO VISIBLE",
                 variable = "aim_torso",
-                color = Color3.fromRGB(0, 255, 0)
+                color = Color3.fromRGB(255, , 0)
             }
         }
     },
@@ -809,6 +809,10 @@ local menuData = {
     ["AUTO FARM"] = {
         "AUTO FARM KILLS (beta)",
     },
+    ["SHERIFF"] = {
+        "SHOOT THE MURDERER (BUTTON)",
+        "¿ONLY VISIBLE?",
+    },
     ["Fps"] = {
         "Fps Boost"
     },
@@ -943,9 +947,8 @@ if topTitle then
         elseif opt == "HITBOX EXTENDER" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text368/refs/heads/main/Text368.lua"))()
 
-        elseif opt == "" then
-            getgenv().TARGET = "All"
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text16/refs/heads/main/Text16.lua"))()
+        elseif opt == "SHOOT THE MURDERER (BUTTON)" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text27/refs/heads/main/Text27.lua"))()
                             
         elseif opt == "" then
             getgenv().TARGET = "Sheriff"
