@@ -63,12 +63,12 @@ local multiButtons = {
             {
                 name = "MODE: BLE",
                 variable = "OnlyVisie",
-                color = Color3.fromRGB(00, 255, 0)
+                color = Color3.fromRGB(0, 255, 0)
             },
             {
                 name = "MODE: NO VISIBLE",
                 variable = "aim_torso",
-                color = Color3.fromRGB(255, , 0)
+                color = Color3.fromRGB(255, 0, 0)
             }
         }
     },
