@@ -953,15 +953,16 @@ if topTitle then
         elseif opt == "¿ONLY VISIBLE?" then
             loadstring("getgenv().OnlyVisible = not getgenv().OnlyVisible")()
                             
-        elseif opt == "" then
-            loadstring(game:HttpGet(""))()
+        elseif opt == "MAP" then
+            getgenv().TeleportMode = "mapa"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text327/refs/heads/main/Text327.lua"))()
 
-        elseif opt == "" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text427/refs/heads/main/Text427.lua"))()
+        elseif opt == "LOBBY" then
+            getgenv().TeleportMode = "lobby"
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text327/refs/heads/main/Text327.lua"))()
                             
-        elseif opt == "" then
-            getgenv().TP_MODE = "JUMPPAD"
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text430/refs/heads/main/Text430.lua"))()
+        elseif opt == "GRAB GUN" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text152/refs/heads/main/Text152.lua"))()
                             
         elseif opt == "" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text428/refs/heads/main/Text428.lua"))()
