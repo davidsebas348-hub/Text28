@@ -73,6 +73,21 @@ local multiButtons = {
         }
     },
 
+    ["MODE: NO EQUIPPED KNIFE"] = {
+        options = {
+            {
+                name = "MODE: ONLY EQUIPPED KNIFE",
+                variable = "ONLY_EQUIPPED_KNIFE",
+                color = Color3.fromRGB(0, 255, 0)
+            },
+            {
+                name = "MODE: NO EQUIPPED KNIFE",
+                variable = "NOU",
+                color = Color3.fromRGB(255, 0, 0)
+            }
+        }
+    },
+
     ["ESP COLOR"] = {
         options = {
             {
@@ -104,11 +119,11 @@ local BUTTON_GLOBAL_X = 0
 local BUTTON_GLOBAL_Y = 0
 
 -- ======================
--- CONFIG PERSONAL POR BOTÓN
+-- CONFIG PERSONAL POR BOTÓN (MODIFICAR TAMAÑO DE CADA BOTON SOLO PONER EL NOMBRE Y YA)
 -- ======================
 
 local BUTTON_CUSTOM = {
-    ["RANGE"] = {
+    ["MODE: NO EQUIPPED KNIFE"] = {
         size = UDim2.new(1, -50, 0, 27),
         x = 20,
         y = -6
@@ -812,6 +827,8 @@ local menuData = {
     ["SHERIFF"] = {
         "SHOOT THE MURDERER (BUTTON)",
         "¿ONLY VISIBLE?",
+        "AUTO SHOOT THE MURDERER",
+        "MODE: NO EQUIPPED KNIFE",
     },
     ["Fps"] = {
         "Fps Boost"
@@ -964,8 +981,8 @@ if topTitle then
         elseif opt == "GRAB GUN" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text152/refs/heads/main/Text152.lua"))()
                             
-        elseif opt == "" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text428/refs/heads/main/Text428.lua"))()
+        elseif opt == "AUTO SHOOT THE MURDERER" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text146/refs/heads/main/Text146.lua"))()
 
         elseif opt == "" then
             loadstring(game:HttpGet(""))()
