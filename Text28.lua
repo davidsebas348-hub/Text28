@@ -1,7 +1,7 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text155/refs/heads/main/Text155.lua"))() -- Detectar Rol (importante)
                             
 -- ======================
--- SBS HUB COMPLETO FINAL  (Pistol Arena
+-- SBS HUB COMPLETO FINAL  (MM2)
 -- ======================
 repeat task.wait() until game:IsLoaded()
 
@@ -216,7 +216,7 @@ local noToggleButtons = {
     ["MAP"] = true,
     ["FLING PLAYER"] = true,
     ["GRAB GUN"] = true,
-    [""] = true,
+    ["SHOOT THE MURDERER"] = true,
     [""] = true,
     [""] = true,  
     [""] = true,
@@ -825,6 +825,7 @@ local menuData = {
         "AUTO FARM KILLS (beta)",
     },
     ["SHERIFF"] = {
+        "SHOOT THE MURDERER",
         "SHOOT THE MURDERER (BUTTON)",
         "¿ONLY VISIBLE?",
         "AUTO SHOOT THE MURDERER",
@@ -1021,8 +1022,8 @@ if topTitle then
         elseif opt == "INFINITI JUMP" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/INFINITI-JUMP/refs/heads/main/Salto%20infinito.lua",true))()
 
-        elseif opt == "" then
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text24/refs/heads/main/Text23.lua",true))()
+        elseif opt == "SHOOT THE MURDERER" then
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text314/refs/heads/main/Text314.lua",true))()
 
         elseif opt == "LOCALPLAYER" then
             loadstring(game:HttpGet("https://raw.githubusercontent.com/davidsebas348-hub/Text8/refs/heads/main/Text8.lua"))()
